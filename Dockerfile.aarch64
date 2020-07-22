@@ -1,0 +1,9 @@
+FROM alpine:3.10
+COPY qemu-aarch64-static /usr/bin/
+
+RUN apk update && \
+    apk add openvpn
+
+# openvpn --config /etc/vpn.cfg --ping-restart 30 --ping 30 --connect-retry 10 120 --connect-timeout 30
+
+CMD [ "openvpn", "--config", "/etc/vpn.cfg", "--ping-restart", "30", "--ping", "30", "--connect-retry", "10", "120", "--connect-timeout", "30" ]
